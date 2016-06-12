@@ -338,10 +338,10 @@ var Engine = (function(global) {
     // }
 
     // //reset the players position and power ups without resetting the whole game
-    // function resetPlayer(){
-    //     player.reset();
+    function resetPlayer(){
+        player.reset();
     //     resetPowerups();
-    // }
+    }
     
     // // reset the position and whether the power up will be visible or not
     // function resetPowerups(){
