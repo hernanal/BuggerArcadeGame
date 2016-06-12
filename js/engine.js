@@ -267,11 +267,11 @@ var Engine = (function(global) {
         }
 
         // render the score, highscore, and lives
-        ctx.font = "32px Impact";
-        ctx.fillStyle = 'black';
-        ctx.fillText("Score: " + currentGame.score, 0, 640);
-        ctx.fillText("High Score: " + currentGame.highscore, 0, 40);
-        ctx.fillText("Lives x" + currentGame.lives, 270, 640);
+        // ctx.font = "32px Impact";
+        // ctx.fillStyle = 'black';
+        // ctx.fillText("Score: " + currentGame.score, 0, 640);
+        // ctx.fillText("High Score: " + currentGame.highscore, 0, 40);
+        // ctx.fillText("Lives x" + currentGame.lives, 270, 640);
 
         renderEntities();
 
