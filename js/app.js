@@ -303,119 +303,119 @@ Player.prototype.handleInput = function(direction){
 // Collectable superclass
 // credit to shikeyou
 
-var Powerups = function(){};
-Powerups.prototype = Object.create(GameElement.prototype);
-Powerups.prototype.constructor = Powerups;
-Powerups.prototype.alignAxisY = -30;
+// var Powerups = function(){};
+// Powerups.prototype = Object.create(GameElement.prototype);
+// Powerups.prototype.constructor = Powerups;
+// Powerups.prototype.alignAxisY = -30;
 
-Powerups.prototype.collectableCollision = function(character){
-    return (
-        (this.visability === true) &&
-        (this.row === character.row) &&
-        (this.x + 101 > character.x) &&
-        (this.x < character.x + 101)
-    );
-};
-
-// Subclass for all blue gems
-
-var Blue_Gem = function(){
-    // this.sprite = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
-    // var gemArray = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
-    // this.x = gemXArray[Math.floor(Math.random() * gemXArray.length)];
-    // this.y = gemYArray[Math.floor(Math.random() * gemYArray.length)];
-    // this.x = [100, 400, 300];
-    // var gemXArray = [100, 400, 300];
-    // this.y = [220, 50, 150]; 
-    // var gemYArray = [220, 50, 150]; 
-
-    // blue gem if statement
-    // if (player.score === 200) {
-    //     this.sprite = gemArray[0];
-    //     this.x = gemXArray[0];
-    //     this.y = gemYArray[0];
-    // }
-    this.sprite ='images/gem-blue.png';
-    this.points = 2;
-    this.probability = .60;
-};
-Blue_Gem.prototype = Object.create(Powerups.prototype);
-Blue_Gem.prototype.constructor = Blue_Gem;
-
-// Subclass for all green gems
-
-var Green_Gem = function(){
-    this.sprite = 'images/gem-green.png';
-    this.points = 4;
-    this.probability = .30;
-};
-Green_Gem.prototype = Object.create(Powerups.prototype);
-Green_Gem.prototype.constructor = Green_Gem;
-
-// Subclass for all orange gems
-
-var Orange_Gem = function(){
-    this.sprite = 'images/gem-orange';
-    this.points = 20;
-    this.probability = .10;
-};
-Orange_Gem.prototype = Object.create(Powerups.prototype);
-Orange_Gem.prototype.constructor = Orange_Gem;
-
-// Subclass for all stars
-
-var Star = function(){
-    this.sprite = 'images/Star.png';
-    this.points = 10;
-    this.probability = .20;
-};
-
-Star.prototype = Object.create(Powerups.prototype);
-Star.prototype.constructor = Star;
-
-// Subclass for lives
-
-var Heart = function(){
-    this.sprite = 'images/Heart.png';
-    this.lives = 1;
-    this.maxValue = 5;
-    this.probability = .10;
-};
-
-// var blueGem = function(){
-//     Gem.call(this,sprite, x, y);
-//     this.sprite = this.sprite[0];
-//     this.x = this.x[0];
-//     this.y = this.y[0];
+// Powerups.prototype.collectableCollision = function(character){
+//     return (
+//         (this.visability === true) &&
+//         (this.row === character.row) &&
+//         (this.x + 101 > character.x) &&
+//         (this.x < character.x + 101)
+//     );
 // };
 
-// blueGem.prototype = Object.create(Gem.prototype);
+// // Subclass for all blue gems
 
-// Gem.prototype.render = function(){
-//     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+// var Blue_Gem = function(){
+//     // this.sprite = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
+//     // var gemArray = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
+//     // this.x = gemXArray[Math.floor(Math.random() * gemXArray.length)];
+//     // this.y = gemYArray[Math.floor(Math.random() * gemYArray.length)];
+//     // this.x = [100, 400, 300];
+//     // var gemXArray = [100, 400, 300];
+//     // this.y = [220, 50, 150]; 
+//     // var gemYArray = [220, 50, 150]; 
+
+//     // blue gem if statement
+//     // if (player.score === 200) {
+//     //     this.sprite = gemArray[0];
+//     //     this.x = gemXArray[0];
+//     //     this.y = gemYArray[0];
+//     // }
+//     this.sprite ='images/gem-blue.png';
+//     this.points = 2;
+//     this.probability = .60;
+// };
+// Blue_Gem.prototype = Object.create(Powerups.prototype);
+// Blue_Gem.prototype.constructor = Blue_Gem;
+
+// // Subclass for all green gems
+
+// var Green_Gem = function(){
+//     this.sprite = 'images/gem-green.png';
+//     this.points = 4;
+//     this.probability = .30;
+// };
+// Green_Gem.prototype = Object.create(Powerups.prototype);
+// Green_Gem.prototype.constructor = Green_Gem;
+
+// // Subclass for all orange gems
+
+// var Orange_Gem = function(){
+//     this.sprite = 'images/gem-orange';
+//     this.points = 20;
+//     this.probability = .10;
+// };
+// Orange_Gem.prototype = Object.create(Powerups.prototype);
+// Orange_Gem.prototype.constructor = Orange_Gem;
+
+// // Subclass for all stars
+
+// var Star = function(){
+//     this.sprite = 'images/Star.png';
+//     this.points = 10;
+//     this.probability = .20;
 // };
 
-// Gem.prototype.update = function(){
-//     if (player.score === 200) {
-//         this.x = gemXArray[0];
-//         this.y = gemYArray[0];
-//     }
+// Star.prototype = Object.create(Powerups.prototype);
+// Star.prototype.constructor = Star;
+
+// // Subclass for lives
+
+// var Heart = function(){
+//     this.sprite = 'images/Heart.png';
+//     this.lives = 1;
+//     this.maxValue = 5;
+//     this.probability = .10;
 // };
 
-// Player.prototype = Object.create(Enemy.prototype);
+// // var blueGem = function(){
+// //     Gem.call(this,sprite, x, y);
+// //     this.sprite = this.sprite[0];
+// //     this.x = this.x[0];
+// //     this.y = this.y[0];
+// // };
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+// // blueGem.prototype = Object.create(Gem.prototype);
+
+// // Gem.prototype.render = function(){
+// //     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+// // };
+
+// // Gem.prototype.update = function(){
+// //     if (player.score === 200) {
+// //         this.x = gemXArray[0];
+// //         this.y = gemYArray[0];
+// //     }
+// // };
+
+// // Player.prototype = Object.create(Enemy.prototype);
+
+// // Now instantiate your objects.
+// // Place all enemy objects in an array called allEnemies
+// // Place the player object in a variable called player
 
 
-// ** Think about creating variables to store the
-// initial y coordinate for each row to make
-// the code more readable. **
+// // ** Think about creating variables to store the
+// // initial y coordinate for each row to make
+// // the code more readable. **
 
-// var enemy_row_one = new Enemy(60);
-// var enemy_row_two = new Enemy(makeRandomSpeed(), makeRandomY());
-// var enemy_row_three = new Enemy(makeRandomSpeed(), makeRandomY());
+// // var enemy_row_one = new Enemy(60);
+// // var enemy_row_two = new Enemy(makeRandomSpeed(), makeRandomY());
+// // var enemy_row_three = new Enemy(makeRandomSpeed(), makeRandomY());
 
 
 // Subclass for all text that is used in game
