@@ -167,43 +167,43 @@ var Engine = (function(global) {
         // ScoreKeeper.update();
     }
 
-    function checkCollisions(){
+    // function checkCollisions(){
 
-        //first check for a collision with power ups.
-        for(var i = 0, len = allPowerups.length; i < len; i++){
-            if(allPowerups[i].collectableCollision(player)){
+    //     //first check for a collision with power ups.
+    //     for(var i = 0, len = allPowerups.length; i < len; i++){
+    //         if(allPowerups[i].collectableCollision(player)){
 
-                // hide collectable after collision
-                allPowerups[i].visability = false;
+    //             // hide collectable after collision
+    //             allPowerups[i].visability = false;
 
-                // if collectable is a gem or star add points to game score.
-                // display text so the player knows how many points they just received
-                if(allPowerups[i] === Blue_Gem ||
-                   allPowerups[i] === Green_Gem ||
-                   allPowerups[i] === Orange_Gem ||
-                   allPowerups[i] === Star) {
-                    currentGame.score += allPowerups[i].points;
-                    displayText('+' + allPowerups[i].points, (Math.floor(allPowerups[i].x / 101)), allPowerups[i].row, .70, 'green');
+    //             // if collectable is a gem or star add points to game score.
+    //             // display text so the player knows how many points they just received
+    //             if(allPowerups[i] === Blue_Gem ||
+    //                allPowerups[i] === Green_Gem ||
+    //                allPowerups[i] === Orange_Gem ||
+    //                allPowerups[i] === Star) {
+    //                 currentGame.score += allPowerups[i].points;
+    //                 displayText('+' + allPowerups[i].points, (Math.floor(allPowerups[i].x / 101)), allPowerups[i].row, .70, 'green');
                     
-                    //only one power up can be collected at a time
-                    break;
-                }
-                // otherwise add a life unless there are already 5 lives.
-                // display text so the player knows that they received a life or that 
-                // they reached the maximum five lives allowed.
-                else if(allPowerups[i] === Heart){
-                    currentGame.lives += allPowerups[i].lives;
-                    displayText("You're ALIVE!", (Math.floor(allPowerups[i].x / 101)), allPowerups.row, .70, 'green');
-                    if(currentGame.lives > allPowerups[i].maxValue){
-                        currentGame.lives = allPowerups[i].maxValue;
-                        displayText("Maximum reached", (Math.floor(allPowerups[i].x / 101)), allPowerups[i].row, .70, 'yellow');
+    //                 //only one power up can be collected at a time
+    //                 break;
+    //             }
+    //             // otherwise add a life unless there are already 5 lives.
+    //             // display text so the player knows that they received a life or that 
+    //             // they reached the maximum five lives allowed.
+    //             else if(allPowerups[i] === Heart){
+    //                 currentGame.lives += allPowerups[i].lives;
+    //                 displayText("You're ALIVE!", (Math.floor(allPowerups[i].x / 101)), allPowerups.row, .70, 'green');
+    //                 if(currentGame.lives > allPowerups[i].maxValue){
+    //                     currentGame.lives = allPowerups[i].maxValue;
+    //                     displayText("Maximum reached", (Math.floor(allPowerups[i].x / 101)), allPowerups[i].row, .70, 'yellow');
                     
-                        break;
-                    }
-                }
-            }
-        }
-    }
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     function updateCurrentGame(){
 
