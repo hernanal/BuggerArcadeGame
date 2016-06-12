@@ -19,12 +19,12 @@ GameElement.prototype.alignAxisY = 0;
 GameElement.prototype.visability = true;
 
 // shared methods
-// GameElement.prototype.update = function(dt){};
-// GameElement.prototype.render = function(){
-//     if(this.visability){
-//         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-//     }
-// };
+GameElement.prototype.update = function(dt){};
+GameElement.prototype.render = function(){
+    if(this.visability){
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+};
 GameElement.prototype.setCol = function(col){
     this.col = col;
     this.x = col * 101 + this.alignAxisX;
