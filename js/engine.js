@@ -137,9 +137,9 @@ var Engine = (function(global) {
     function updateEntities(dt) {
 
         // update power up collectables
-        allPowerups.forEach(function(powerup){
-            powerup.update(dt);
-        });
+        // allPowerups.forEach(function(powerup){
+        //     powerup.update(dt);
+        // });
 
         // update enemies
         allEnemies.forEach(function(enemy) {
@@ -150,17 +150,17 @@ var Engine = (function(global) {
         player.update();
 
         // update the pop up texts
-        allTexts.forEach(function(text){
-            text.update(dt);
-        });
+        // allTexts.forEach(function(text){
+        //     text.update(dt);
+        // });
 
         // remove pop ups shortly after they are displayed
         // credit shikeyou
-        for(var i = allTexts.length - 1; i >= 0; i--){
-            if(allTexts[i].duration < 0){
-                allTexts.splice(i, 1);
-            }
-        }
+        // for(var i = allTexts.length - 1; i >= 0; i--){
+        //     if(allTexts[i].duration < 0){
+        //         allTexts.splice(i, 1);
+        //     }
+        // }
 
         // gem.update();
 
