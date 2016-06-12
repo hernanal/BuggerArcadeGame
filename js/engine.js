@@ -57,17 +57,17 @@ var Engine = (function(global) {
     // helper function that displays animated pop up text for a short period of time
     // credit shikeyou
 
-    function displayText(text, col, row, duration, color){
-        allTexts.push(new InGameText(text, col, row, duration, color));
-    }
+    // function displayText(text, col, row, duration, color){
+    //     allTexts.push(new InGameText(text, col, row, duration, color));
+    // }
 
-    // shuffles an array
-    //from http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript                      // This is called in resetCollectables. Reference the link in our code
+    // // shuffles an array
+    // //from http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript                      // This is called in resetCollectables. Reference the link in our code
 
-    function shuffle(o){
-        for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-            return o;
-    }
+    // function shuffle(o){
+    //     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    //         return o;
+    // }
 
 
     /* This function serves as the kickoff point for the game loop itself
