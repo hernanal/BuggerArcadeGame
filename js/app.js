@@ -172,19 +172,19 @@ Enemy.prototype.enemyCollisions = function(a_player){
         // a_player.y = 400;
         // if currentGame does not exist then make it a global object
         // in engine.js. Same goes for displayText.
-        var texts = ['WTF!', 'OUCH!', 'WHY!', 'AHH!', 'DAMNIT!']
-        var i = Math.floor(Math.random() * 5);
-        currentGame.score -= 20;
-        currentGame.lives -= 1;
-        displayText(texts[i], a_player.col, a_player.row, .70, 'red');
+        // var texts = ['WTF!', 'OUCH!', 'WHY!', 'AHH!', 'DAMNIT!']
+        // var i = Math.floor(Math.random() * 5);
+        // currentGame.score -= 20;
+        // currentGame.lives -= 1;
+        // displayText(texts[i], a_player.col, a_player.row, .70, 'red');
         a_player.reset();
-        if(currentGame.lives === 0){
+        // if(currentGame.lives === 0){
             // if gameOver doesn't exist, make it global
-            gameOver();
+            // gameOver();
 
-            return;
+            // return;
         }
-        return;
+        // return;
     }
 };
 
