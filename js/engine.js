@@ -53,6 +53,7 @@ var Engine = (function(global) {
         'highScore' : 0//,
         // 'lives' : 0
     };
+    global.currentGame = currentGame;
 
     // helper function that displays animated pop up text for a short period of time
     // credit shikeyou
