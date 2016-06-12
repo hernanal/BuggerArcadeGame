@@ -420,26 +420,26 @@ Player.prototype.handleInput = function(direction){
 
 // Subclass for all text that is used in game
 
-var InGameText = function(text, col, row, duration, color){
-    this.text = text;
-    this.setCol(col);
-    this.setRow(row);
-    this.duration = duration;
-    this.color = color;
-    this.speed = 50; // pixels per second
-};
+// var InGameText = function(text, col, row, duration, color){
+//     this.text = text;
+//     this.setCol(col);
+//     this.setRow(row);
+//     this.duration = duration;
+//     this.color = color;
+//     this.speed = 50; // pixels per second
+// };
 
-InGameText.prototype = Object.create(InGameText.prototype);
-InGameText.prototype.constructor = InGameText;
-InGameText.prototype.update = function(dt){
-    this.duration -= dt;
-    this.y -= this.speed * dt;
-};
-InGameText.prototype.render = function(){
-    ctx.font = '30px Impact';
-    ctx.fillStyle = this.color;
-    ctx.fillText(this.text, this.x + 30, this.y + 120);
-};
+// InGameText.prototype = Object.create(InGameText.prototype);
+// InGameText.prototype.constructor = InGameText;
+// InGameText.prototype.update = function(dt){
+//     this.duration -= dt;
+//     this.y -= this.speed * dt;
+// };
+// InGameText.prototype.render = function(){
+//     ctx.font = '30px Impact';
+//     ctx.fillStyle = this.color;
+//     ctx.fillText(this.text, this.x + 30, this.y + 120);
+// };
 
 
 // This is where the objects are instantiated.
