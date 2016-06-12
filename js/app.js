@@ -479,26 +479,26 @@ var player = new Player();
 // console.log(player.x);
 // console.log(player.update(x));
 
-var allPowerups = [];
-for(var i = 0; i < 4; i++){
-    allPowerups.push(new Blue_Gem());
-}
-for(var i = 0; i < 3; i++){
-    allPowerups.push(new Green_Gem());
-}
-for(var i = 0; i < 2; i++){
-    allPowerups.push(new Star());
-}
-for(var i = 0; i < 1; i++){
-    allPowerups.push(new Orange_Gem());
-}
-for(var i = 0; i < 1; i++){
-    allPowerups.push(new Heart());
-}
+// var allPowerups = [];
+// for(var i = 0; i < 4; i++){
+//     allPowerups.push(new Blue_Gem());
+// }
+// for(var i = 0; i < 3; i++){
+//     allPowerups.push(new Green_Gem());
+// }
+// for(var i = 0; i < 2; i++){
+//     allPowerups.push(new Star());
+// }
+// for(var i = 0; i < 1; i++){
+//     allPowerups.push(new Orange_Gem());
+// }
+// for(var i = 0; i < 1; i++){
+//     allPowerups.push(new Heart());
+// }
 
 
-// for the storage of in game text
-var allTexts = [];
+// // for the storage of in game text
+// var allTexts = [];
 
 
 // This listens for key presses and sends the keys to your
