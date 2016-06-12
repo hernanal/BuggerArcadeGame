@@ -377,12 +377,12 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png',
-        'images/gem-blue.png',
-        'images/gem-green.png',
-        'images/gem-orange.png',
-        'images/Star.png',
-        'images/Heart.png'
+        'images/char-boy.png'//,
+        // 'images/gem-blue.png',
+        // 'images/gem-green.png',
+        // 'images/gem-orange.png',
+        // 'images/Star.png',
+        // 'images/Heart.png'
     ]);
     Resources.onReady(init);
 
