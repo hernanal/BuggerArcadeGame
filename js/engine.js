@@ -322,49 +322,49 @@ var Engine = (function(global) {
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
-    function gameOver() {
+    // function gameOver() {
         
-        // when game ends, player moves back to its initial position and
-        // the score is put back to zero. If the score of the previous
-        // game is higher than our high score then we change highScore
+    //     // when game ends, player moves back to its initial position and
+    //     // the score is put back to zero. If the score of the previous
+    //     // game is higher than our high score then we change highScore
 
-        resetPlayer();
+    //     resetPlayer();
 
-        if(currentGame.score > currentGame.highScore){
-            currentGame.highScore = currentGame.score;
-        }
-        currentGame.score = 0;
-    }
+    //     if(currentGame.score > currentGame.highScore){
+    //         currentGame.highScore = currentGame.score;
+    //     }
+    //     currentGame.score = 0;
+    // }
 
-    //reset the players position and power ups without resetting the whole game
-    function resetPlayer(){
-        player.reset();
-        resetPowerups();
-    }
+    // //reset the players position and power ups without resetting the whole game
+    // function resetPlayer(){
+    //     player.reset();
+    //     resetPowerups();
+    // }
     
-    // reset the position and whether the power up will be visible or not
-    function resetPowerups(){
+    // // reset the position and whether the power up will be visible or not
+    // function resetPowerups(){
 
-        // first shuffle an array from 0 - 14 because there are 15 total squares
-        var shuffledList = shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
+    //     // first shuffle an array from 0 - 14 because there are 15 total squares
+    //     var shuffledList = shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
 
-        // next loop through the power ups, grab an item from the shuffledList
-        // array and store it in a variable.
-        for(var i = 0, len = allPowerups.length; i < len; i++){
+    //     // next loop through the power ups, grab an item from the shuffledList
+    //     // array and store it in a variable.
+    //     for(var i = 0, len = allPowerups.length; i < len; i++){
             
-            var n = shuffledList[i];
+    //         var n = shuffledList[i];
 
-            // this will ensure none of the columns are greater than 4.
-            allPowerups[i].setCol(n % 5);
+    //         // this will ensure none of the columns are greater than 4.
+    //         allPowerups[i].setCol(n % 5);
 
-            // this will ensure none of the rows are greater than 3.
-            allPowerups[i].setRow(Math.floor(n / 5) + 1);
+    //         // this will ensure none of the rows are greater than 3.
+    //         allPowerups[i].setRow(Math.floor(n / 5) + 1);
 
-            // finally, we determine whether the power up will be visible
-            // based on its probability
-            allPowerups[i].visability = Math.random() <= allPowerups[i].probability;
-        }
-    }
+    //         // finally, we determine whether the power up will be visible
+    //         // based on its probability
+    //         allPowerups[i].visability = Math.random() <= allPowerups[i].probability;
+    //     }
+    // }
 
     // To conclude, we will load all of our elements resources.
 
