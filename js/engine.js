@@ -36,7 +36,7 @@ var Engine = (function(global) {
     canvas.width = 505;
     canvas.height = 706;
     doc.body.appendChild(canvas);
-    // global.canvasWidth = canvas.width;
+    global.canvasWidth = canvas.width;
     // global.canvasHeight = canvas.height;
 
 
