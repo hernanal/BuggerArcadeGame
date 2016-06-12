@@ -105,7 +105,7 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-        gameOver();
+        // gameOver();
         lastTime = Date.now();
         main();
     }
