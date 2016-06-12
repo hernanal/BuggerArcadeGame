@@ -48,11 +48,11 @@ var Engine = (function(global) {
 
 
     // variable to keep track of the current score, highest score, and lives remaining
-    var currentGame = {
-        'score' : 0,
-        'highScore' : 0,
-        'lives' : 0
-    };
+    // var currentGame = {
+    //     'score' : 0,
+    //     'highScore' : 0,
+    //     'lives' : 0
+    // };
 
     // helper function that displays animated pop up text for a short period of time
     // credit shikeyou
