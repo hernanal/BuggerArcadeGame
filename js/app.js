@@ -183,7 +183,7 @@ Enemy.prototype.enemyCollisions = function(a_player){
             // gameOver();
 
             // return;
-        }
+        // }
         // return;
     }
 };
