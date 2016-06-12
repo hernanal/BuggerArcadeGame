@@ -36,15 +36,15 @@ var Engine = (function(global) {
     canvas.width = 505;
     canvas.height = 706;
     doc.body.appendChild(canvas);
-    global.canvasWidth = canvas.width;
-    global.canvasHeight = canvas.height;
+    // global.canvasWidth = canvas.width;
+    // global.canvasHeight = canvas.height;
 
 
     // global variables storing the number of rows and columns in the game
     var numRows = 6;
     var numCols = 5;
-    global.numRows = numRows;
-    global.numCols = numCols;
+    // global.numRows = numRows;
+    // global.numCols = numCols;
 
 
     // variable to keep track of the current score, highest score, and lives remaining
