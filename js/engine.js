@@ -16,7 +16,7 @@
 
 var Engine = (function(global) {
 
-     'use strict';
+     // 'use strict';
 
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
