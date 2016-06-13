@@ -325,11 +325,11 @@ var Engine = (function(global) {
      */
     // function gameOver() {
         
-    //     // when game ends, player moves back to its initial position and
-    //     // the score is put back to zero. If the score of the previous
-    //     // game is higher than our high score then we change highScore
+    // //     // when game ends, player moves back to its initial position and
+    // //     // the score is put back to zero. If the score of the previous
+    // //     // game is higher than our high score then we change highScore
 
-    //     resetPlayer();
+    //     player.reset();
 
     //     if(currentGame.score > currentGame.highScore){
     //         currentGame.highScore = currentGame.score;
