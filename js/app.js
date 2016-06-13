@@ -323,7 +323,7 @@ Item.prototype.itemCollision = function(character){
     );
 };
 
-// // Subclass for all blue gems
+// Subclass for all blue gems
 
 var Blue_Gem = function(){
     // this.sprite = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
@@ -348,7 +348,7 @@ var Blue_Gem = function(){
 Blue_Gem.prototype = Object.create(Item.prototype);
 Blue_Gem.prototype.constructor = Blue_Gem;
 
-// // Subclass for all green gems
+// Subclass for all green gems
 
 var Green_Gem = function(){
     this.sprite = 'images/gem-green.png';
@@ -358,7 +358,7 @@ var Green_Gem = function(){
 Green_Gem.prototype = Object.create(Item.prototype);
 Green_Gem.prototype.constructor = Green_Gem;
 
-// // Subclass for all orange gems
+// Subclass for all orange gems
 
 var Orange_Gem = function(){
     this.sprite = 'images/gem-orange';
@@ -368,7 +368,7 @@ var Orange_Gem = function(){
 Orange_Gem.prototype = Object.create(Item.prototype);
 Orange_Gem.prototype.constructor = Orange_Gem;
 
-// // Subclass for all stars
+// Subclass for all stars
 
 var Star = function(){
     this.sprite = 'images/Star.png';
