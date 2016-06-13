@@ -175,16 +175,19 @@ Enemy.prototype.enemyCollisions = function(a_player){
         // var texts = ['WTF!', 'OUCH!', 'WHY!', 'AHH!', 'DAMNIT!']
         // var i = Math.floor(Math.random() * 5);
         currentGame.score -= 20;
-        // currentGame.lives -= 1;
+        currentGame.lives -= 1;
         // displayText(texts[i], a_player.col, a_player.row, .70, 'red');
         a_player.reset();
-        // if(currentGame.lives === 0){
-            // if gameOver doesn't exist, make it global
-            // gameOver();
 
-            // return;
-        // }
-        // return;
+        // Game over sequence
+        if(currentGame.lives <= 0){
+            a_player.reset();
+            if(currentGame.score > currentGame.highScore){
+                currentGame.highScore = currentGame.score;
+            }
+            currentGame.score = 0;
+            currentGame.lives = 3;
+        }
     }
 };
 
