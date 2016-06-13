@@ -340,6 +340,11 @@ Item.prototype.reset = function(){
     //determine whether item will display based on probability
     this.visability = Math.random() <= this.probability;
 };
+Item.prototype.update = function(){
+    if(player.y <= 0){
+        this.reset();
+    }
+};
 
 // Subclass for all blue gems
 
