@@ -309,7 +309,9 @@ Player.prototype.handleInput = function(direction){
 // Collectable items Superclass
 // credit to shikeyou
 
-var Item = function(){};
+var Item = function(){
+    // this.row = this.setRow(3);
+};
 Item.prototype = Object.create(GameElement.prototype);
 Item.prototype.constructor = Item;
 Item.prototype.alignAxisY = -30;
@@ -321,6 +323,9 @@ Item.prototype.itemCollision = function(character){
         (this.x + 101 > character.x) &&
         (this.x < character.x + 101)
     );
+};
+Item.prototype.randomRow = function(){
+    this.row = this.setRow(Math.floor(Math.random() *3) + 1);
 };
 
 // Subclass for all blue gems
@@ -344,6 +349,7 @@ var Blue_Gem = function(){
     this.sprite ='images/gem-blue.png';
     this.points = 2;
     this.probability = .60;
+    this.randomRow();
 };
 Blue_Gem.prototype = Object.create(Item.prototype);
 Blue_Gem.prototype.constructor = Blue_Gem;
