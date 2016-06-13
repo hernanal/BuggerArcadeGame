@@ -267,6 +267,7 @@ Player.prototype.update = function(dt){
         this.y * dt;
         if(this.y < 0){
             this.y = 0;
+            currentGame.score += 10;
             // think about creating an array of 
             // winning alerts and looping through
             // to display a different message each
