@@ -290,16 +290,16 @@ var Engine = (function(global) {
 
         // render power ups first, have to do it row by row to avoid
         // overlapping. Start by sorting them into rows. credit shikeyou
-        // var sorter = {1: [], 2: [], 3: []};
-        // for(var i = 0, len = allItems.length; i < len; i++){
-        //     sorter[allItems[i].row].push(allItems[i]);
-        // }
-        // // render row by row.
-        // for(i = 1; i <= 3; i++){
-        //     for(var j = 0, len = sorter[i].length; j < len; j++){
-        //         sorter[i][j].render();
-        //     }
-        // }
+        var sorter = {1: [], 2: [], 3: []};
+        for(var i = 0, len = allItems.length; i < len; i++){
+            sorter[allItems[i].row].push(allItems[i]);
+        }
+        // render row by row.
+        for(i = 1; i <= 3; i++){
+            for(var j = 0, len = sorter[i].length; j < len; j++){
+                sorter[i][j].render();
+            }
+        }
 
         // render our player next
         player.render();
