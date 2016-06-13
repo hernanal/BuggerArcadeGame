@@ -328,6 +328,13 @@ Item.prototype.randomLocation = function(){
     this.row = this.setRow(Math.floor(Math.random() *3) + 1);
     this.col = this.setCol(Math.floor(Math.random() *4));
 };
+Item.prototype.isItVisible = function(){
+    this.visability = Math.random() <= this.probability;
+};
+// Item.prototype.reset = function(){
+//     this.randomLocation();
+//     this.isItVisible();
+// };
 
 // Subclass for all blue gems
 
@@ -351,6 +358,7 @@ var Blue_Gem = function(){
     this.points = 2;
     this.probability = .60;
     this.randomLocation();
+    this.isItVisible();
 };
 Blue_Gem.prototype = Object.create(Item.prototype);
 Blue_Gem.prototype.constructor = Blue_Gem;
@@ -362,6 +370,7 @@ var Green_Gem = function(){
     this.points = 4;
     this.probability = .30;
     this.randomLocation();
+    this.isItVisible();
 };
 Green_Gem.prototype = Object.create(Item.prototype);
 Green_Gem.prototype.constructor = Green_Gem;
@@ -373,6 +382,7 @@ var Orange_Gem = function(){
     this.points = 20;
     this.probability = .10;
     this.randomLocation();
+    this.isItVisible();
 };
 Orange_Gem.prototype = Object.create(Item.prototype);
 Orange_Gem.prototype.constructor = Orange_Gem;
@@ -384,6 +394,7 @@ var Star = function(){
     this.points = 10;
     this.probability = .20;
     this.randomLocation();
+    this.isItVisible();
 };
 
 Star.prototype = Object.create(Item.prototype);
