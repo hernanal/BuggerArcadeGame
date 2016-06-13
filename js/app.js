@@ -295,10 +295,10 @@ Player.prototype.handleInput = function(direction){
         this.x += 100;
     }
     if(direction === 'up' && this.y > 20){
-        this.y -= 84;
+        this.y -= 90;
     }
     if (direction === 'down' && this.y < 400) {
-        this.y += 84;
+        this.y += 90;
     }
 };
 
