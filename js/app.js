@@ -327,7 +327,9 @@ Item.prototype.itemCollision = function(character){
 Item.prototype.randomRow = function(){
     this.row = this.setRow(Math.floor(Math.random() *3) + 1);
 };
-
+Item.prototype.randomCol = function(){
+    this.col = this.setCol(Math.floor(Math.random() *4));
+};
 // Subclass for all blue gems
 
 var Blue_Gem = function(){
@@ -360,6 +362,7 @@ var Green_Gem = function(){
     this.sprite = 'images/gem-green.png';
     this.points = 4;
     this.probability = .30;
+    this.randomCol();
 };
 Green_Gem.prototype = Object.create(Item.prototype);
 Green_Gem.prototype.constructor = Green_Gem;
