@@ -306,78 +306,78 @@ Player.prototype.handleInput = function(direction){
     }
 };
 
-// Collectable superclass
+// Collectable items Superclass
 // credit to shikeyou
 
-// var Powerups = function(){};
-// Powerups.prototype = Object.create(GameElement.prototype);
-// Powerups.prototype.constructor = Powerups;
-// Powerups.prototype.alignAxisY = -30;
+var Item = function(){};
+Item.prototype = Object.create(GameElement.prototype);
+Item.prototype.constructor = Item;
+Item.prototype.alignAxisY = -30;
 
-// Powerups.prototype.collectableCollision = function(character){
-//     return (
-//         (this.visability === true) &&
-//         (this.row === character.row) &&
-//         (this.x + 101 > character.x) &&
-//         (this.x < character.x + 101)
-//     );
-// };
+Item.prototype.itemCollision = function(character){
+    return (
+        (this.visability === true) &&
+        (this.row === character.row) &&
+        (this.x + 101 > character.x) &&
+        (this.x < character.x + 101)
+    );
+};
 
 // // Subclass for all blue gems
 
-// var Blue_Gem = function(){
-//     // this.sprite = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
-//     // var gemArray = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
-//     // this.x = gemXArray[Math.floor(Math.random() * gemXArray.length)];
-//     // this.y = gemYArray[Math.floor(Math.random() * gemYArray.length)];
-//     // this.x = [100, 400, 300];
-//     // var gemXArray = [100, 400, 300];
-//     // this.y = [220, 50, 150]; 
-//     // var gemYArray = [220, 50, 150]; 
+var Blue_Gem = function(){
+    // this.sprite = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
+    // var gemArray = ['images/gem-blue.png', 'images/gem-green.png', 'images/gem-orange.png'];
+    // this.x = gemXArray[Math.floor(Math.random() * gemXArray.length)];
+    // this.y = gemYArray[Math.floor(Math.random() * gemYArray.length)];
+    // this.x = [100, 400, 300];
+    // var gemXArray = [100, 400, 300];
+    // this.y = [220, 50, 150]; 
+    // var gemYArray = [220, 50, 150]; 
 
-//     // blue gem if statement
-//     // if (player.score === 200) {
-//     //     this.sprite = gemArray[0];
-//     //     this.x = gemXArray[0];
-//     //     this.y = gemYArray[0];
-//     // }
-//     this.sprite ='images/gem-blue.png';
-//     this.points = 2;
-//     this.probability = .60;
-// };
-// Blue_Gem.prototype = Object.create(Powerups.prototype);
-// Blue_Gem.prototype.constructor = Blue_Gem;
+    // blue gem if statement
+    // if (player.score === 200) {
+    //     this.sprite = gemArray[0];
+    //     this.x = gemXArray[0];
+    //     this.y = gemYArray[0];
+    // }
+    this.sprite ='images/gem-blue.png';
+    this.points = 2;
+    this.probability = .60;
+};
+Blue_Gem.prototype = Object.create(Item.prototype);
+Blue_Gem.prototype.constructor = Blue_Gem;
 
 // // Subclass for all green gems
 
-// var Green_Gem = function(){
-//     this.sprite = 'images/gem-green.png';
-//     this.points = 4;
-//     this.probability = .30;
-// };
-// Green_Gem.prototype = Object.create(Powerups.prototype);
-// Green_Gem.prototype.constructor = Green_Gem;
+var Green_Gem = function(){
+    this.sprite = 'images/gem-green.png';
+    this.points = 4;
+    this.probability = .30;
+};
+Green_Gem.prototype = Object.create(Item.prototype);
+Green_Gem.prototype.constructor = Green_Gem;
 
 // // Subclass for all orange gems
 
-// var Orange_Gem = function(){
-//     this.sprite = 'images/gem-orange';
-//     this.points = 20;
-//     this.probability = .10;
-// };
-// Orange_Gem.prototype = Object.create(Powerups.prototype);
-// Orange_Gem.prototype.constructor = Orange_Gem;
+var Orange_Gem = function(){
+    this.sprite = 'images/gem-orange';
+    this.points = 20;
+    this.probability = .10;
+};
+Orange_Gem.prototype = Object.create(Item.prototype);
+Orange_Gem.prototype.constructor = Orange_Gem;
 
 // // Subclass for all stars
 
-// var Star = function(){
-//     this.sprite = 'images/Star.png';
-//     this.points = 10;
-//     this.probability = .20;
-// };
+var Star = function(){
+    this.sprite = 'images/Star.png';
+    this.points = 10;
+    this.probability = .20;
+};
 
-// Star.prototype = Object.create(Powerups.prototype);
-// Star.prototype.constructor = Star;
+Star.prototype = Object.create(Item.prototype);
+Star.prototype.constructor = Star;
 
 // // Subclass for lives
 
@@ -485,21 +485,21 @@ var player = new Player();
 // console.log(player.x);
 // console.log(player.update(x));
 
-// var allPowerups = [];
-// for(var i = 0; i < 4; i++){
-//     allPowerups.push(new Blue_Gem());
-// }
-// for(var i = 0; i < 3; i++){
-//     allPowerups.push(new Green_Gem());
-// }
-// for(var i = 0; i < 2; i++){
-//     allPowerups.push(new Star());
-// }
+var allItems = [];
+for(var i = 0; i < 4; i++){
+    allItems.push(new Blue_Gem());
+}
+for(var i = 0; i < 3; i++){
+    allItems.push(new Green_Gem());
+}
+for(var i = 0; i < 2; i++){
+    allItems.push(new Star());
+}
+for(var i = 0; i < 1; i++){
+    allItems.push(new Orange_Gem());
+}
 // for(var i = 0; i < 1; i++){
-//     allPowerups.push(new Orange_Gem());
-// }
-// for(var i = 0; i < 1; i++){
-//     allPowerups.push(new Heart());
+//     allItems.push(new Heart());
 // }
 
 
