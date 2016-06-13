@@ -520,4 +520,4 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-
+// merged master with scores branch 6/13/16
