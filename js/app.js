@@ -142,7 +142,7 @@ Enemy.prototype.update = function(dt) {
 
 
     // Code that handles collisions
-    this.enemyCollisions(player);
+    this.enemyCollisions(player, allItems);
 
     // if(this.x === player.x && this.y === player.y){
     //     console.log("Got it!")
@@ -153,7 +153,7 @@ Enemy.prototype.update = function(dt) {
     // }
 };
 
-Enemy.prototype.enemyCollisions = function(a_player){
+Enemy.prototype.enemyCollisions = function(a_player, item_array){
     // for(var i = 0; i < allEnemies.length; i++){
     //     if (allEnemies[i].x < player.x + 75 &&
     //         allEnemies[i].x + 30 > player.x &&
@@ -182,6 +182,13 @@ Enemy.prototype.enemyCollisions = function(a_player){
         // Game over sequence
         if(currentGame.lives <= 0){
             a_player.reset();
+
+            // loop to reset collectable items when game ends
+            for(var i = 0; i < item_array.length; i++){
+                item_array[i].reset();
+            }
+
+            // update high score
             if(currentGame.score > currentGame.highScore){
                 currentGame.highScore = currentGame.score;
             }
@@ -343,6 +350,7 @@ Item.prototype.reset = function(){
 Item.prototype.update = function(){
     if(player.y <= 0){
         this.reset();
+        // console.log(currentGame.lives <= 0);
     }
 };
 
