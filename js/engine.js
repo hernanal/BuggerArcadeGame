@@ -292,6 +292,8 @@ var Engine = (function(global) {
         // overlapping. Start by sorting them into rows. credit shikeyou
         var sorter = {1: [], 2: [], 3: []};
         for(var i = 0, len = allItems.length; i < len; i++){
+            console.log(sorter[1]);
+            console.log(allItems[2].row);
             sorter[allItems[i].row].push(allItems[i]);
         }
         // render row by row.
