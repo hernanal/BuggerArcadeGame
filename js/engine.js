@@ -50,8 +50,8 @@ var Engine = (function(global) {
     // variable to keep track of the current score, highest score, and lives remaining
     var currentGame = {
         'score' : 0,
-        'highScore' : 0//,
-        // 'lives' : 0
+        'highScore' : 0,
+        'lives' : 3
     };
     global.currentGame = currentGame;
 
@@ -272,7 +272,7 @@ var Engine = (function(global) {
         ctx.fillStyle = 'black';
         ctx.fillText("Score: " + currentGame.score, 0, 640);
         ctx.fillText("High Score: " + currentGame.highScore, 0, 40);
-        // ctx.fillText("Lives x" + currentGame.lives, 270, 640);
+        ctx.fillText("Lives: " + currentGame.lives, 400, 640);
 
         renderEntities();
 
