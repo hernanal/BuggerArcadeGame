@@ -299,7 +299,7 @@ var Engine = (function(global) {
             // when it tries to push the item to sorter[0] we get an error.
             // the line below solves this problem. 
 
-            // allItems[i].row = Math.floor(Math.random() * 3) + 1;
+            allItems[i].row = Math.floor(Math.random() * 3) + 1;
             // console.log(allItems[i].row);
             sorter[allItems[i].row].push(allItems[i]);
             // console.log(sorter);
