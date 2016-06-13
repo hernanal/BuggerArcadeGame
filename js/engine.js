@@ -125,7 +125,7 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         // checkCollisions();
-        updateCurrentGame();
+        // updateCurrentGame();
     }
 
     /* This is called by the update function and loops through all of the
@@ -206,19 +206,19 @@ var Engine = (function(global) {
     //     }
     // }
 
-    function updateCurrentGame(){
+    // function updateCurrentGame(){
 
-    //     // if the player reaches the water, add points, display a text,
-    //     // and move the player back to its starting position.
-        if(player.row === 0){
-    //         var texts = ['WINNER!', 'UNSTOPPABLE!', 'CHICKEN DINNER!'];
-    //         var i = Math.floor(Math.random() * 3);
+    // //     // if the player reaches the water, add points, display a text,
+    // //     // and move the player back to its starting position.
+    //     if(player.row === 0){
+    // //         var texts = ['WINNER!', 'UNSTOPPABLE!', 'CHICKEN DINNER!'];
+    // //         var i = Math.floor(Math.random() * 3);
 
-            currentGame.score += 8;
-    //         displayText('+8' + texts[i], player.col, player.row, .70, 'white');
-            resetPlayer();
-        }
-    }
+    //         currentGame.score += 8;
+    // //         displayText('+8' + texts[i], player.col, player.row, .70, 'white');
+    //         resetPlayer();
+    //     }
+    // }
 
     // Now it is time to render our elements
 
@@ -338,10 +338,10 @@ var Engine = (function(global) {
     // }
 
     // //reset the players position and power ups without resetting the whole game
-    function resetPlayer(){
-        player.reset();
-    //     resetPowerups();
-    }
+    // function resetPlayer(){
+    //     player.reset();
+    // //     resetPowerups();
+    // }
     
     // // reset the position and whether the power up will be visible or not
     // function resetPowerups(){
