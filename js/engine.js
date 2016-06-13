@@ -287,21 +287,30 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
-
         // render power ups first, have to do it row by row to avoid
         // overlapping. Start by sorting them into rows. credit shikeyou
         var sorter = {1: [], 2: [], 3: []};
         for(var i = 0, len = allItems.length; i < len; i++){
-            console.log(sorter[1]);
-            console.log(allItems[2].row);
+            // console.log(sorter[1]);
+            // console.log(allItems[2].row);
+
+            // the problem we are having here is that each item has a default 
+            // row of 0 that does not change. 0 does not exist in sorter so 
+            // when it tries to push the item to sorter[0] we get an error.
+
+            allItems[i].row = Math.floor(Math.random() * 3) + 1;
+            // console.log(allItems[i].row);
             sorter[allItems[i].row].push(allItems[i]);
+            // console.log(sorter);
         }
         // render row by row.
-        for(i = 1; i <= 3; i++){
-            for(var j = 0, len = sorter[i].length; j < len; j++){
-                sorter[i][j].render();
-            }
-        }
+        // for(i = 1; i <= 3; i++){
+        //     for(var j = 0, len = sorter[i].length; j < len; j++){
+        //         // console.log(sorter[i][j]);
+        //         // console.log(sorter[i].length);
+        //         sorter[i][j].render();
+        //     }
+        // }
 
         // render our player next
         player.render();
@@ -380,12 +389,12 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'//,
-        // 'images/gem-blue.png',
-        // 'images/gem-green.png',
-        // 'images/gem-orange.png',
-        // 'images/Star.png',
-        // 'images/Heart.png'
+        'images/char-boy.png',
+        'images/gem-blue.png',
+        'images/gem-green.png',
+        'images/gem-orange.png',
+        'images/Star.png',
+        'images/Heart.png'
     ]);
     Resources.onReady(init);
 
