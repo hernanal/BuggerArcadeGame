@@ -304,13 +304,13 @@ var Engine = (function(global) {
             // console.log(sorter);
         }
         // render row by row.
-        // for(i = 1; i <= 3; i++){
-        //     for(var j = 0, len = sorter[i].length; j < len; j++){
-        //         // console.log(sorter[i][j]);
-        //         // console.log(sorter[i].length);
-        //         sorter[i][j].render();
-        //     }
-        // }
+        for(i = 1; i <= 3; i++){
+            for(var j = 0, len = sorter[i].length; j < len; j++){
+                // console.log(sorter[i][j]);
+                // console.log(sorter[i].length);
+                sorter[i][j].render();
+            }
+        }
 
         // render our player next
         player.render();
@@ -393,8 +393,8 @@ var Engine = (function(global) {
         'images/gem-blue.png',
         'images/gem-green.png',
         'images/gem-orange.png',
-        'images/Star.png',
-        'images/Heart.png'
+        'images/Star.png'//,
+        // 'images/Heart.png'
     ]);
     Resources.onReady(init);
 
