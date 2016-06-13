@@ -124,7 +124,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
         // updateCurrentGame();
     }
 
@@ -137,10 +137,10 @@ var Engine = (function(global) {
      */
     function updateEntities(dt) {
 
-        // update power up collectables
-        // allPowerups.forEach(function(powerup){
-        //     powerup.update(dt);
-        // });
+        // update item collectables
+        allItems.forEach(function(item){
+            item.update(dt);
+        });
 
         // update enemies
         allEnemies.forEach(function(enemy) {
@@ -168,43 +168,43 @@ var Engine = (function(global) {
         // ScoreKeeper.update();
     }
 
-    // function checkCollisions(){
+    function checkCollisions(){
 
-    //     //first check for a collision with power ups.
-    //     for(var i = 0, len = allPowerups.length; i < len; i++){
-    //         if(allPowerups[i].collectableCollision(player)){
+        //first check for a collision with items.
+        for(var i = 0, len = allItems.length; i < len; i++){
+            if(allItems[i].itemCollision(player)){
 
-    //             // hide collectable after collision
-    //             allPowerups[i].visability = false;
+                // hide item after collision
+                allItems[i].visability = false;
 
-    //             // if collectable is a gem or star add points to game score.
-    //             // display text so the player knows how many points they just received
-    //             if(allPowerups[i] === Blue_Gem ||
-    //                allPowerups[i] === Green_Gem ||
-    //                allPowerups[i] === Orange_Gem ||
-    //                allPowerups[i] === Star) {
-    //                 currentGame.score += allPowerups[i].points;
-    //                 displayText('+' + allPowerups[i].points, (Math.floor(allPowerups[i].x / 101)), allPowerups[i].row, .70, 'green');
+                // if item is a gem or star add points to game score.
+                // display text so the player knows how many points they just received
+                if(allItems[i] === Blue_Gem ||
+                   allItems[i] === Green_Gem ||
+                   allItems[i] === Orange_Gem ||
+                   allItems[i] === Star) {
+                    currentGame.score += allItems[i].points;
+                    // displayText('+' + allItems[i].points, (Math.floor(allItems[i].x / 101)), allItems[i].row, .70, 'green');
                     
-    //                 //only one power up can be collected at a time
-    //                 break;
-    //             }
-    //             // otherwise add a life unless there are already 5 lives.
-    //             // display text so the player knows that they received a life or that 
-    //             // they reached the maximum five lives allowed.
-    //             else if(allPowerups[i] === Heart){
-    //                 currentGame.lives += allPowerups[i].lives;
-    //                 displayText("You're ALIVE!", (Math.floor(allPowerups[i].x / 101)), allPowerups.row, .70, 'green');
-    //                 if(currentGame.lives > allPowerups[i].maxValue){
-    //                     currentGame.lives = allPowerups[i].maxValue;
-    //                     displayText("Maximum reached", (Math.floor(allPowerups[i].x / 101)), allPowerups[i].row, .70, 'yellow');
+                    //only one power up can be collected at a time
+                    break;
+                }
+                // otherwise add a life unless there are already 5 lives.
+                // display text so the player knows that they received a life or that 
+                // they reached the maximum five lives allowed.
+                // else if(allItems[i] === Heart){
+                //     currentGame.lives += allItems[i].lives;
+                //     // displayText("You're ALIVE!", (Math.floor(allItems[i].x / 101)), allItems.row, .70, 'green');
+                //     if(currentGame.lives > allItems[i].maxValue){
+                //         currentGame.lives = allItems[i].maxValue;
+                //         // displayText("Maximum reached", (Math.floor(allItems[i].x / 101)), allItems[i].row, .70, 'yellow');
                     
-    //                     break;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+                //         break;
+                    // }
+                // }
+            }
+        }
+    }
 
     // function updateCurrentGame(){
 
@@ -291,8 +291,8 @@ var Engine = (function(global) {
         // render power ups first, have to do it row by row to avoid
         // overlapping. Start by sorting them into rows. credit shikeyou
         // var sorter = {1: [], 2: [], 3: []};
-        // for(var i = 0, len = allPowerups.length; i < len; i++){
-        //     sorter[allPowerups[i].row].push(allPowerups[i]);
+        // for(var i = 0, len = allItems.length; i < len; i++){
+        //     sorter[allItems[i].row].push(allItems[i]);
         // }
         // // render row by row.
         // for(i = 1; i <= 3; i++){
@@ -340,30 +340,30 @@ var Engine = (function(global) {
     // //reset the players position and power ups without resetting the whole game
     // function resetPlayer(){
     //     player.reset();
-    // //     resetPowerups();
+    // //     resetItems();
     // }
     
     // // reset the position and whether the power up will be visible or not
-    // function resetPowerups(){
+    // function resetItems(){
 
     //     // first shuffle an array from 0 - 14 because there are 15 total squares
     //     var shuffledList = shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
 
     //     // next loop through the power ups, grab an item from the shuffledList
     //     // array and store it in a variable.
-    //     for(var i = 0, len = allPowerups.length; i < len; i++){
+    //     for(var i = 0, len = allItems.length; i < len; i++){
             
     //         var n = shuffledList[i];
 
     //         // this will ensure none of the columns are greater than 4.
-    //         allPowerups[i].setCol(n % 5);
+    //         allItems[i].setCol(n % 5);
 
     //         // this will ensure none of the rows are greater than 3.
-    //         allPowerups[i].setRow(Math.floor(n / 5) + 1);
+    //         allItems[i].setRow(Math.floor(n / 5) + 1);
 
     //         // finally, we determine whether the power up will be visible
     //         // based on its probability
-    //         allPowerups[i].visability = Math.random() <= allPowerups[i].probability;
+    //         allItems[i].visability = Math.random() <= allItems[i].probability;
     //     }
     // }
 
