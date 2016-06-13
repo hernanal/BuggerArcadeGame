@@ -253,8 +253,10 @@ Player.prototype.reset = function(){
     //     this.x = 200;
     //     this.y = 400;
     // }
-    this.x = 200;
-    this.y = 400;
+    // this.x = 200;
+    // this.y = 400;
+    this.setCol(2);
+    this.setRow(5);
 };
 
 Player.prototype.update = function(dt){
