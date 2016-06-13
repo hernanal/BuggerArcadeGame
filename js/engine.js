@@ -294,11 +294,12 @@ var Engine = (function(global) {
             // console.log(sorter[1]);
             // console.log(allItems[2].row);
 
-            // the problem we are having here is that each item has a default 
+            // the problem we were having here is that each item has a default 
             // row of 0 that does not change. 0 does not exist in sorter so 
             // when it tries to push the item to sorter[0] we get an error.
+            // the line below solves this problem. 
 
-            allItems[i].row = Math.floor(Math.random() * 3) + 1;
+            // allItems[i].row = Math.floor(Math.random() * 3) + 1;
             // console.log(allItems[i].row);
             sorter[allItems[i].row].push(allItems[i]);
             // console.log(sorter);
@@ -308,6 +309,24 @@ var Engine = (function(global) {
             for(var j = 0, len = sorter[i].length; j < len; j++){
                 // console.log(sorter[i][j]);
                 // console.log(sorter[i].length);
+
+                // sorter[i][j] is not an acceptable value to be passed
+                // to drawImage in the render function.
+                // either we need to add specific x and y coordinates 
+                // instead of inheriting them from the superclass
+                // OR we need to give the Item superclass its own render
+                // function.
+
+                // We need to find a way to render each instance of item 
+                // subclasses in array allItems in a random location on 
+                // rows 1-3. 
+                // Maybe we can emulate what we did with enemies, randomly
+                // selecting a different row each time the instance exceeds
+                // the width of the canvas.
+
+                // Check out the resetItems function that is commented out,
+                //  that function is meant to reset the position of items.
+
                 sorter[i][j].render();
             }
         }
