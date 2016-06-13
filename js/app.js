@@ -361,7 +361,7 @@ Green_Gem.prototype.constructor = Green_Gem;
 // Subclass for all orange gems
 
 var Orange_Gem = function(){
-    this.sprite = 'images/gem-orange';
+    this.sprite = 'images/gem-orange.png';
     this.points = 20;
     this.probability = .10;
 };
