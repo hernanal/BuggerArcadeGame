@@ -324,17 +324,22 @@ Item.prototype.itemCollision = function(character){
         (this.x < character.x + 101)
     );
 };
-Item.prototype.randomLocation = function(){
+// Item.prototype.randomLocation = function(){
+//     this.row = this.setRow(Math.floor(Math.random() *3) + 1);
+//     this.col = this.setCol(Math.floor(Math.random() *4));
+// };
+// Item.prototype.isItVisible = function(){
+//     this.visability = Math.random() <= this.probability;
+// };
+Item.prototype.reset = function(){
+
+    // generate random rows and columns
     this.row = this.setRow(Math.floor(Math.random() *3) + 1);
     this.col = this.setCol(Math.floor(Math.random() *4));
-};
-Item.prototype.isItVisible = function(){
+
+    //determine whether item will display based on probability
     this.visability = Math.random() <= this.probability;
 };
-// Item.prototype.reset = function(){
-//     this.randomLocation();
-//     this.isItVisible();
-// };
 
 // Subclass for all blue gems
 
@@ -357,8 +362,9 @@ var Blue_Gem = function(){
     this.sprite ='images/gem-blue.png';
     this.points = 2;
     this.probability = .60;
-    this.randomLocation();
-    this.isItVisible();
+    // this.randomLocation();
+    // this.isItVisible();
+    this.reset();
 };
 Blue_Gem.prototype = Object.create(Item.prototype);
 Blue_Gem.prototype.constructor = Blue_Gem;
@@ -369,8 +375,9 @@ var Green_Gem = function(){
     this.sprite = 'images/gem-green.png';
     this.points = 4;
     this.probability = .30;
-    this.randomLocation();
-    this.isItVisible();
+    // this.randomLocation();
+    // this.isItVisible();
+    this.reset();
 };
 Green_Gem.prototype = Object.create(Item.prototype);
 Green_Gem.prototype.constructor = Green_Gem;
@@ -381,8 +388,9 @@ var Orange_Gem = function(){
     this.sprite = 'images/gem-orange.png';
     this.points = 20;
     this.probability = .10;
-    this.randomLocation();
-    this.isItVisible();
+    // this.randomLocation();
+    // this.isItVisible();
+    this.reset();
 };
 Orange_Gem.prototype = Object.create(Item.prototype);
 Orange_Gem.prototype.constructor = Orange_Gem;
@@ -393,8 +401,9 @@ var Star = function(){
     this.sprite = 'images/Star.png';
     this.points = 10;
     this.probability = .20;
-    this.randomLocation();
-    this.isItVisible();
+    // this.randomLocation();
+    // this.isItVisible();
+    this.reset();
 };
 
 Star.prototype = Object.create(Item.prototype);
