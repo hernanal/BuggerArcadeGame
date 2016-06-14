@@ -620,3 +620,4 @@ document.addEventListener('keyup', function(e) {
 });
 
 // merged master with scores branch 6/13/16
+// merged master with boosters branch 6/14/16
