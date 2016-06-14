@@ -43,8 +43,8 @@ var Engine = (function(global) {
     // global variables storing the number of rows and columns in the game
     var numRows = 6;
     var numCols = 5;
-    // global.numRows = numRows;
-    // global.numCols = numCols;
+    global.numRows = numRows;
+    global.numCols = numCols;
 
 
     // variable to keep track of the current score, highest score, and lives remaining
@@ -111,7 +111,7 @@ var Engine = (function(global) {
         main();
     }
 
-    // Update the game and perform collision checks
+    // Update the entities in the game
 
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how
@@ -151,17 +151,17 @@ var Engine = (function(global) {
         player.update();
 
         // update the pop up texts
-        // allTexts.forEach(function(text){
-        //     text.update(dt);
-        // });
+        allTexts.forEach(function(text){
+            text.update(dt);
+        });
 
         // remove pop ups shortly after they are displayed
         // credit shikeyou
-        // for(var i = allTexts.length - 1; i >= 0; i--){
-        //     if(allTexts[i].duration < 0){
-        //         allTexts.splice(i, 1);
-        //     }
-        // }
+        for(var i = allTexts.length - 1; i >= 0; i--){
+            if(allTexts[i].duration < 0){
+                allTexts.splice(i, 1);
+            }
+        }
 
         // gem.update();
 
@@ -347,9 +347,9 @@ var Engine = (function(global) {
         });
 
         // rend the texts last
-        // allTexts.forEach(function(text){
-        //     text.render();
-        // });
+        allTexts.forEach(function(text){
+            text.render();
+        });
 
         // gem.render();
     }
