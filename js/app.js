@@ -1,11 +1,11 @@
 // Initial helper method
-// credit to shikeyou
+// Credit: shikeyou
 
 Number.prototype.fit = function(oldMin, oldMax, newMin, newMax){
     return (this - 0) / (oldMax - oldMin) * (newMax- newMin) + newMin;
 };
 
-// Super class and constructor function for everything in the game
+// Super class and constructor function for every element in the game
 
 var GameElement = function(){};
 
@@ -32,6 +32,12 @@ GameElement.prototype.setCol = function(col){
 GameElement.prototype.setRow = function(row){
     this.row = row;
     this.y = row * 83 + this.alignAxisY;
+};
+// Method to display text during collisions, when the player wins
+// and when the game is over
+// Credit: shikeyou
+GameElement.prototype.displayText = function(text, col, row, duration, color){
+    allTexts.push(new InGameText(text, col, row, duration, color));
 };
 
 //Enemy speeds and possible y coordinates
@@ -172,11 +178,11 @@ Enemy.prototype.enemyCollisions = function(a_player, item_array){
         // a_player.y = 400;
         // if currentGame does not exist then make it a global object
         // in engine.js. Same goes for displayText.
-        // var texts = ['WTF!', 'OUCH!', 'WHY!', 'AHH!', 'DAMNIT!']
-        // var i = Math.floor(Math.random() * 5);
+        var texts = ['NO!', 'OUCH!', 'WHY!', 'AHH!']
+        var i = Math.floor(Math.random() * texts.length);
         currentGame.score -= 20;
         currentGame.lives -= 1;
-        // displayText(texts[i], a_player.col, a_player.row, .70, 'red');
+        this.displayText(texts[i], a_player.x, a_player.y, .70, 'red');
         a_player.reset();
 
         // Game over sequence
@@ -275,6 +281,8 @@ Player.prototype.update = function(dt){
         // all computers.
         this.x * dt;
         this.y * dt;
+
+        // Winning sequence
         if(this.y < 0){
             this.y = 0;
             currentGame.score += 10;
@@ -283,7 +291,8 @@ Player.prototype.update = function(dt){
             // to display a different message each
             // time the player reaches the water
             // alert("Congrats, winner!");
-            // player.score += 10;
+
+            // PUT DISPLAYTEXT CALL HERE
             this.reset();
         }
         // if(this.collisonCheck() === true){
@@ -350,13 +359,16 @@ Item.prototype.itemBoost = function(){
         if(allItems[i].itemCollision(player) === true){
             // console.log(allItems[i].itemCollision(player));
             
+            // Check if item is a Heart and lives is not maxed out
             if(allItems[i].lives === true && 
                currentGame.lives < 5){
                 currentGame.lives += 1;
+                // PUT DISPLAYTEXT CALL HERE
             }
             else{
                 currentGame.lives = currentGame.lives
-                currentGame.score += allItems[i].points;             
+                currentGame.score += allItems[i].points;
+                // PUT DISPLAYTEXT CALL HERE             
             }
             // allItems[i].randomLocation();
         
@@ -525,26 +537,30 @@ Heart.prototype.constructor = Heart;
 
 // Subclass for all text that is used in game
 
-// var InGameText = function(text, col, row, duration, color){
-//     this.text = text;
-//     this.setCol(col);
-//     this.setRow(row);
-//     this.duration = duration;
-//     this.color = color;
-//     this.speed = 50; // pixels per second
-// };
+var InGameText = function(text, x, y, duration, color){
+    this.text = text;
+    // this.setCol(3);
+    this.x = x;
+    // this.setRow(3);
+    this.y = y;
+    this.duration = duration;
+    this.color = color;
+    this.speed = 50; // pixels per second
+};
 
-// InGameText.prototype = Object.create(InGameText.prototype);
-// InGameText.prototype.constructor = InGameText;
-// InGameText.prototype.update = function(dt){
-//     this.duration -= dt;
-//     this.y -= this.speed * dt;
-// };
-// InGameText.prototype.render = function(){
-//     ctx.font = '30px Impact';
-//     ctx.fillStyle = this.color;
-//     ctx.fillText(this.text, this.x + 30, this.y + 120);
-// };
+InGameText.prototype = Object.create(GameElement.prototype);
+InGameText.prototype.constructor = InGameText;
+InGameText.prototype.update = function(dt){
+    this.duration -= dt;
+    this.y -= this.speed * dt;
+    this.x -= 40 * dt;
+};
+InGameText.prototype.render = function(){
+    ctx.font = '30px Impact';
+    ctx.fillStyle = this.color;
+    ctx.fillText(this.text, this.x + 30, this.y + 120);
+};
+// PUT A RENDER GAMEOVER METHOD HERE
 
 
 // This is where the objects are instantiated.
@@ -603,7 +619,7 @@ for(var i = 0; i < 1; i++){
 
 
 // // for the storage of in game text
-// var allTexts = [];
+var allTexts = [];
 
 
 // This listens for key presses and sends the keys to your
