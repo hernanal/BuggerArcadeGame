@@ -16,12 +16,12 @@ GameElement.prototype.row = 0;
 GameElement.prototype.col = 0;
 GameElement.prototype.alignAxisX = 0;
 GameElement.prototype.alignAxisY = 0;
-GameElement.prototype.visability = true;
+GameElement.prototype.visibility = true;
 
 // shared methods
 GameElement.prototype.update = function(dt){};
 GameElement.prototype.render = function(){
-    if(this.visability){
+    if(this.visibility){
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 };
@@ -328,12 +328,13 @@ Item.prototype.height = 75;
 // tests for conditions that would be present during a collision
 Item.prototype.itemCollision = function(character){
     //return (
-        // if(this.visability === true &&
+        // if(this.visibility === true &&
         //    this.x === character.x &&
         //    this.y === character.y)
            // this.x + 101 > character.x &&
            // this.x < character.x + 101)
-    if(character.x < this.x + this.width &&
+    if(this.visibility === true &&
+       character.x < this.x + this.width &&
        character.x + character.w > this.x &&
        character.y < this.y + this.height &&
        character.h + character.y > this.y)
@@ -347,38 +348,47 @@ Item.prototype.itemBoost = function(){
     //first check for a collision with one of the items
     for(var i = 0; i < allItems.length; i++){
         if(allItems[i].itemCollision(player) === true){
-            console.log(allItems[i].itemCollision(player));
+            // console.log(allItems[i].itemCollision(player));
+            
+            currentGame.score += allItems[i].points;
+            allItems[i].randomLocation();
+        
             // hide the item
-            allItems[i].visability = false;
+            allItems[i].visibility = false;
 
+            // console.log(allItems[i].points);
+            
+            // console.log('check')
             // add points to score if item is gem or star
-            if(allItems[i] === Blue_Gem ||
-               allItems[i] === Green_Gem ||
-               allItems[i] === Orange_Gem ||
-               allItems[i] === Star){
-                currentGame.score += allItems[i].points;
-
-                // only one item can be collected at a time
-                break;
-            }
+            // if(allItems[i] === new Blue_Gem //||
+            //    // allItems[i] === Green_Gem ||
+            //    // allItems[i] === Orange_Gem ||
+            //    // allItems[i] === Star
+            //    ){
+            //     console.log('check')
+            //     currentGame.score += allItems[i].points;
+            //     // only one item can be collected at a time
+            // break;
+            // }
         }
     }
 };
-// Item.prototype.randomLocation = function(){
-//     this.row = this.setRow(Math.floor(Math.random() *3) + 1);
-//     this.col = this.setCol(Math.floor(Math.random() *4));
-// };
+Item.prototype.randomLocation = function(){
+    this.row = this.setRow(Math.floor(Math.random() *3) + 1);
+    this.col = this.setCol(Math.floor(Math.random() *4));
+};
 // Item.prototype.isItVisible = function(){
-//     this.visability = Math.random() <= this.probability;
+//     this.visibility = Math.random() <= this.probability;
 // };
 Item.prototype.reset = function(){
 
     // generate random rows and columns
-    this.row = this.setRow(Math.floor(Math.random() *3) + 1);
-    this.col = this.setCol(Math.floor(Math.random() *4));
+    // this.row = this.setRow(Math.floor(Math.random() *3) + 1);
+    // this.col = this.setCol(Math.floor(Math.random() *4));
+    this.randomLocation();
 
     //determine whether item will display based on probability
-    this.visability = Math.random() <= this.probability;
+    this.visibility = Math.random() <= this.probability;
 };
 Item.prototype.update = function(){
     if(player.y <= 0){
