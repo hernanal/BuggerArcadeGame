@@ -39,6 +39,9 @@ GameElement.prototype.setRow = function(row){
 GameElement.prototype.displayText = function(text, col, row, duration, color){
     allTexts.push(new InGameText(text, col, row, duration, color));
 };
+GameElement.prototype.displayGameOver = function(text, col, row, duration, color){
+    gameOverText.push(new InGameText(text, col, row, duration, color));
+};
 
 //Enemy speeds and possible y coordinates
 // var speedArray = [25, 50, 75, 100, 250, 500];
@@ -182,11 +185,16 @@ Enemy.prototype.enemyCollisions = function(a_player, item_array){
         var i = Math.floor(Math.random() * texts.length);
         currentGame.score -= 20;
         currentGame.lives -= 1;
-        this.displayText(texts[i], a_player.x, a_player.y, .70, 'red');
+        if(currentGame.lives > 0){
+            this.displayText(texts[i], a_player.x, a_player.y, .70, 'red');
+        }
         a_player.reset();
 
         // Game over sequence
         if(currentGame.lives <= 0){
+            var gameover = ['GAME OVER!', 'YOU LOSE!', 'ARE YOU TRYING?'];
+            var i = Math.floor(Math.random() * gameover.length);
+            this.displayGameOver(gameover[i], a_player.x, a_player.y, 1, 'red');
             a_player.reset();
 
             // loop to reset collectable items when game ends
@@ -553,14 +561,21 @@ InGameText.prototype.constructor = InGameText;
 InGameText.prototype.update = function(dt){
     this.duration -= dt;
     this.y -= this.speed * dt;
-    this.x -= 40 * dt;
+    this.x -= 60 * dt;
 };
 InGameText.prototype.render = function(){
     ctx.font = '30px Impact';
     ctx.fillStyle = this.color;
     ctx.fillText(this.text, this.x + 30, this.y + 120);
 };
-// PUT A RENDER GAMEOVER METHOD HERE
+InGameText.prototype.renderGameOver = function(){
+    ctx.font = '50px Impact';
+    ctx.fillStyle = this.color;
+    ctx.fillText(this.text, this.x, this.y);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 5;
+    ctx.strokeText(this.text, this.x, this.y);
+};
 
 
 // This is where the objects are instantiated.
@@ -618,10 +633,14 @@ for(var i = 0; i < 1; i++){
 }
 
 
-// // for the storage of in game text
+// for the storage of in game text
 var allTexts = [];
+var gameOverText = [];
 
-
+// Game over text instantiation
+// var gameover = new InGameText('GAME OVER', gameoverCol, gameoverRow, 1, 'green');
+// var gameoverCol = gameover.setCol(2);
+// var gameoverRow = gameover.setRow(2);
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
