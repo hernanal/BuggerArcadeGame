@@ -350,7 +350,14 @@ Item.prototype.itemBoost = function(){
         if(allItems[i].itemCollision(player) === true){
             // console.log(allItems[i].itemCollision(player));
             
-            currentGame.score += allItems[i].points;
+            if(allItems[i].lives === true && 
+               currentGame.lives < 5){
+                currentGame.lives += 1;
+            }
+            else{
+                currentGame.lives = currentGame.lives
+                currentGame.score += allItems[i].points;             
+            }
             // allItems[i].randomLocation();
         
             // hide the item
@@ -374,8 +381,8 @@ Item.prototype.itemBoost = function(){
     }
 };
 Item.prototype.randomLocation = function(){
-    this.row = this.setRow(Math.floor(Math.random() *3) + 1);
-    this.col = this.setCol(Math.floor(Math.random() *4));
+    this.row = this.setRow(Math.floor(Math.random() * 3) + 1);
+    this.col = this.setCol(Math.floor(Math.random() * 5));
 };
 // Item.prototype.isItVisible = function(){
 //     this.visibility = Math.random() <= this.probability;
@@ -468,12 +475,17 @@ Star.prototype.constructor = Star;
 
 // // Subclass for lives
 
-// var Heart = function(){
-//     this.sprite = 'images/Heart.png';
-//     this.lives = 1;
-//     this.maxValue = 5;
-//     this.probability = .10;
-// };
+var Heart = function(){
+    this.sprite = 'images/Heart.png';
+    this.lives = true;
+    // this.maxValue = 5;
+    this.points = 0;
+    this.probability = .10;
+    this.reset();
+};
+
+Heart.prototype = Object.create(Item.prototype);
+Heart.prototype.constructor = Heart;
 
 // // var blueGem = function(){
 // //     Gem.call(this,sprite, x, y);
@@ -585,9 +597,9 @@ for(var i = 0; i < 2; i++){
 for(var i = 0; i < 1; i++){
     allItems.push(new Orange_Gem());
 }
-// for(var i = 0; i < 1; i++){
-//     allItems.push(new Heart());
-// }
+for(var i = 0; i < 1; i++){
+    allItems.push(new Heart());
+}
 
 
 // // for the storage of in game text
