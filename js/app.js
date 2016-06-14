@@ -322,14 +322,47 @@ var Item = function(){
 Item.prototype = Object.create(GameElement.prototype);
 Item.prototype.constructor = Item;
 Item.prototype.alignAxisY = -30;
+Item.prototype.width = 75;
+Item.prototype.height = 75;
 
+// tests for conditions that would be present during a collision
 Item.prototype.itemCollision = function(character){
-    return (
-        (this.visability === true) &&
-        (this.row === character.row) &&
-        (this.x + 101 > character.x) &&
-        (this.x < character.x + 101)
-    );
+    //return (
+        // if(this.visability === true &&
+        //    this.x === character.x &&
+        //    this.y === character.y)
+           // this.x + 101 > character.x &&
+           // this.x < character.x + 101)
+    if(character.x < this.x + this.width &&
+       character.x + character.w > this.x &&
+       character.y < this.y + this.height &&
+       character.h + character.y > this.y)
+    {
+        return true;
+    }
+    //);
+};
+Item.prototype.itemBoost = function(){
+
+    //first check for a collision with one of the items
+    for(var i = 0; i < allItems.length; i++){
+        if(allItems[i].itemCollision(player) === true){
+            console.log(allItems[i].itemCollision(player));
+            // hide the item
+            allItems[i].visability = false;
+
+            // add points to score if item is gem or star
+            if(allItems[i] === Blue_Gem ||
+               allItems[i] === Green_Gem ||
+               allItems[i] === Orange_Gem ||
+               allItems[i] === Star){
+                currentGame.score += allItems[i].points;
+
+                // only one item can be collected at a time
+                break;
+            }
+        }
+    }
 };
 // Item.prototype.randomLocation = function(){
 //     this.row = this.setRow(Math.floor(Math.random() *3) + 1);
@@ -352,6 +385,7 @@ Item.prototype.update = function(){
         this.reset();
         // console.log(currentGame.lives <= 0);
     }
+    this.itemBoost();
 };
 
 // Subclass for all blue gems
