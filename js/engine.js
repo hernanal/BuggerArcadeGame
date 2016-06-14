@@ -162,6 +162,17 @@ var Engine = (function(global) {
                 allTexts.splice(i, 1);
             }
         }
+        gameOverText.forEach(function(text){
+            text.update(dt);
+        });
+
+        for(var i = gameOverText.length - 1; i >= 0; i--){
+            if(gameOverText[i].duration < 0){
+                gameOverText.splice(i, 1);
+            }
+        }
+
+        // gameover.update();
 
         // gem.update();
 
@@ -346,10 +357,17 @@ var Engine = (function(global) {
             enemy.render();
         });
 
-        // rend the texts last
+        // render the texts last
         allTexts.forEach(function(text){
             text.render();
         });
+
+        gameOverText.forEach(function(text){
+            text.renderGameOver();
+        });
+
+        // render game over text
+        // gameover.renderGameOver();
 
         // gem.render();
     }
