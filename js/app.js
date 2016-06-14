@@ -351,7 +351,7 @@ Item.prototype.itemBoost = function(){
             // console.log(allItems[i].itemCollision(player));
             
             currentGame.score += allItems[i].points;
-            allItems[i].randomLocation();
+            // allItems[i].randomLocation();
         
             // hide the item
             allItems[i].visibility = false;

@@ -124,7 +124,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        checkCollisions();
+        // checkCollisions();
         // updateCurrentGame();
     }
 
@@ -168,27 +168,27 @@ var Engine = (function(global) {
         // ScoreKeeper.update();
     }
 
-    function checkCollisions(){
+    // function checkCollisions(){
 
-        //first check for a collision with items.
-        for(var i = 0, len = allItems.length; i < len; i++){
-            if(allItems[i].itemCollision(player)){
+    //     //first check for a collision with items.
+    //     for(var i = 0, len = allItems.length; i < len; i++){
+    //         if(allItems[i].itemCollision(player)){
 
-                // hide item after collision
-                allItems[i].visability = false;
+    //             // hide item after collision
+    //             allItems[i].visability = false;
 
-                // if item is a gem or star add points to game score.
-                // display text so the player knows how many points they just received
-                if(allItems[i] === Blue_Gem ||
-                   allItems[i] === Green_Gem ||
-                   allItems[i] === Orange_Gem ||
-                   allItems[i] === Star) {
-                    currentGame.score += allItems[i].points;
-                    // displayText('+' + allItems[i].points, (Math.floor(allItems[i].x / 101)), allItems[i].row, .70, 'green');
+    //             // if item is a gem or star add points to game score.
+    //             // display text so the player knows how many points they just received
+    //             if(allItems[i] === Blue_Gem ||
+    //                allItems[i] === Green_Gem ||
+    //                allItems[i] === Orange_Gem ||
+    //                allItems[i] === Star) {
+    //                 // currentGame.score += allItems[i].points;
+    //                 // displayText('+' + allItems[i].points, (Math.floor(allItems[i].x / 101)), allItems[i].row, .70, 'green');
                     
-                    //only one power up can be collected at a time
-                    break;
-                }
+    //                 //only one power up can be collected at a time
+    //                 break;
+    //             }
                 // otherwise add a life unless there are already 5 lives.
                 // display text so the player knows that they received a life or that 
                 // they reached the maximum five lives allowed.
@@ -202,9 +202,9 @@ var Engine = (function(global) {
                 //         break;
                     // }
                 // }
-            }
-        }
-    }
+        //     }
+        // }
+    // }
 
     // function updateCurrentGame(){
 
