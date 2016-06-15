@@ -51,7 +51,7 @@ var Engine = (function(global) {
     var currentGame = {
         'score' : 0,
         'highScore' : 0,
-        'lives' : 3
+        'lives' : 1
     };
     global.currentGame = currentGame;
 
@@ -135,6 +135,17 @@ var Engine = (function(global) {
      * the data/properties related to the object. Do your drawing in your
      * render methods.
      */
+
+    // remove pop ups shortly after they are displayed
+    // credit shikeyou
+    function removeText(text_array){
+        for(var i = text_array.length - 1; i >= 0; i--){
+            if(text_array[i].duration < 0){
+                text_array.splice(i, 1);
+            }
+        }
+    }
+
     function updateEntities(dt) {
 
         // update item collectables
@@ -154,23 +165,17 @@ var Engine = (function(global) {
         allTexts.forEach(function(text){
             text.update(dt);
         });
+        removeText(allTexts);
 
-        // remove pop ups shortly after they are displayed
-        // credit shikeyou
-        for(var i = allTexts.length - 1; i >= 0; i--){
-            if(allTexts[i].duration < 0){
-                allTexts.splice(i, 1);
-            }
-        }
-        gameOverText.forEach(function(text){
-            text.update(dt);
+        winnerText.forEach(function(text){
+            text.updateWinner(dt);
         });
+        removeText(winnerText);
 
-        for(var i = gameOverText.length - 1; i >= 0; i--){
-            if(gameOverText[i].duration < 0){
-                gameOverText.splice(i, 1);
-            }
-        }
+        gameOverText.forEach(function(text){
+            text.updateGameOver(dt);
+        });
+        removeText(gameOverText);
 
         // gameover.update();
 
@@ -360,6 +365,10 @@ var Engine = (function(global) {
         // render the texts last
         allTexts.forEach(function(text){
             text.render();
+        });
+
+        winnerText.forEach(function(text){
+            text.renderWinner();
         });
 
         gameOverText.forEach(function(text){
