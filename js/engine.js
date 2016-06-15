@@ -1,10 +1,10 @@
 /* Engine.js
  * This file provides the game loop functionality (update entities and render),
  * draws the initial game board on the screen, and then calls the update and
- * render methods on your player and enemy objects (defined in your app.js).
+ * render methods on the player and enemy objects (defined in the app.js).
  *
  * A game engine works by drawing the entire game screen over and over, kind of
- * like a flipbook you may have created as a kid. When your player moves across
+ * like a flipbook you may have created as a kid. When the player moves across
  * the screen, it may look like just that image/character is moving or being
  * drawn but that is not the case. What's really happening is the entire "scene"
  * is being drawn over and over, presenting the illusion of animation.
@@ -15,18 +15,10 @@
  */
 
 var Engine = (function(global) {
-
-     // 'use strict';
-
-    /* Predefine the variables we'll be using within this scope,
+    /* Predefine the variables we will be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
      */
-
-     // enable the strict mode.
-     // this helps to optimize the code.
-     // from http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/
-
     var doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
@@ -37,45 +29,27 @@ var Engine = (function(global) {
     canvas.height = 706;
     doc.body.appendChild(canvas);
     global.canvasWidth = canvas.width;
-    // global.canvasHeight = canvas.height;
 
-
-    // global variables storing the number of rows and columns in the game
     var numRows = 6;
     var numCols = 5;
     global.numRows = numRows;
     global.numCols = numCols;
 
-
-    // variable to keep track of the current score, highest score, and lives remaining
+    // Variable to keep track of the current score, 
+    // high score, and lives remaining
     var currentGame = {
         'score' : 0,
         'highScore' : 0,
-        'lives' : 1
+        'lives' : 3
     };
     global.currentGame = currentGame;
-
-    // helper function that displays animated pop up text for a short period of time
-    // credit shikeyou
-
-    // function displayText(text, col, row, duration, color){
-    //     allTexts.push(new InGameText(text, col, row, duration, color));
-    // }
-
-    // // shuffles an array
-    // //from http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript                      // This is called in resetCollectables. Reference the link in our code
-
-    // function shuffle(o){
-    //     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    //         return o;
-    // }
 
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
     function main() {
-        /* Get our time delta information which is required if your game
+        /* Get our time delta information which is required if the game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
          * would be the same for everyone (regardless of how fast their
@@ -106,38 +80,27 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-        // gameOver();
         lastTime = Date.now();
         main();
     }
 
-    // Update the entities in the game
 
     /* This function is called by main (our game loop) and itself calls all
-     * of the functions which may need to update entity's data. Based on how
-     * you implement your collision detection (when two entities occupy the
-     * same space, for instance when your character should die), you may find
-     * the need to add an additional function call here. For now, we've left
-     * it commented out - you may or may not want to implement this
-     * functionality this way (you could just implement collision detection
-     * on the entities themselves within your app.js file).
+     * of the functions which may need to update entity's data. 
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
-        // updateCurrentGame();
     }
 
+
     /* This is called by the update function and loops through all of the
-     * objects within your allEnemies array as defined in app.js and calls
-     * their update() methods. It will then call the update function for your
-     * player object. These update methods should focus purely on updating
-     * the data/properties related to the object. Do your drawing in your
-     * render methods.
+     * objects within the allEnemies array as defined in app.js and calls
+     * their update() methods. It will then call the update function for the
+     * player object.  
      */
 
-    // remove pop ups shortly after they are displayed
-    // credit shikeyou
+    // Remove pop ups shortly after they are displayed
+    // Credit: shikeyou
     function removeText(text_array){
         for(var i = text_array.length - 1; i >= 0; i--){
             if(text_array[i].duration < 0){
@@ -176,73 +139,11 @@ var Engine = (function(global) {
             text.updateGameOver(dt);
         });
         removeText(gameOverText);
-
-        // gameover.update();
-
-        // gem.update();
-
-        // ScoreKeeper.update();
     }
 
-    // function checkCollisions(){
-
-    //     //first check for a collision with items.
-    //     for(var i = 0, len = allItems.length; i < len; i++){
-    //         if(allItems[i].itemCollision(player)){
-
-    //             // hide item after collision
-    //             allItems[i].visability = false;
-
-    //             // if item is a gem or star add points to game score.
-    //             // display text so the player knows how many points they just received
-    //             if(allItems[i] === Blue_Gem ||
-    //                allItems[i] === Green_Gem ||
-    //                allItems[i] === Orange_Gem ||
-    //                allItems[i] === Star) {
-    //                 // currentGame.score += allItems[i].points;
-    //                 // displayText('+' + allItems[i].points, (Math.floor(allItems[i].x / 101)), allItems[i].row, .70, 'green');
-                    
-    //                 //only one power up can be collected at a time
-    //                 break;
-    //             }
-                // otherwise add a life unless there are already 5 lives.
-                // display text so the player knows that they received a life or that 
-                // they reached the maximum five lives allowed.
-                // else if(allItems[i] === Heart){
-                //     currentGame.lives += allItems[i].lives;
-                //     // displayText("You're ALIVE!", (Math.floor(allItems[i].x / 101)), allItems.row, .70, 'green');
-                //     if(currentGame.lives > allItems[i].maxValue){
-                //         currentGame.lives = allItems[i].maxValue;
-                //         // displayText("Maximum reached", (Math.floor(allItems[i].x / 101)), allItems[i].row, .70, 'yellow');
-                    
-                //         break;
-                    // }
-                // }
-        //     }
-        // }
-    // }
-
-    // function updateCurrentGame(){
-
-    // //     // if the player reaches the water, add points, display a text,
-    // //     // and move the player back to its starting position.
-    //     if(player.row === 0){
-    // //         var texts = ['WINNER!', 'UNSTOPPABLE!', 'CHICKEN DINNER!'];
-    // //         var i = Math.floor(Math.random() * 3);
-
-    //         currentGame.score += 8;
-    // //         displayText('+8' + texts[i], player.col, player.row, .70, 'white');
-    //         resetPlayer();
-    //     }
-    // }
-
-    // Now it is time to render our elements
 
     /* This function initially draws the "game level", it will then call
-     * the renderEntities function. Remember, this function is called every
-     * game tick (or loop of the game engine) because that's how games work -
-     * they are flipbooks creating the illusion of animation but in reality
-     * they are just drawing the entire screen over and over.
+     * the renderEntities function. 
      */
 
     function render() {
@@ -250,9 +151,7 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
 
-         // clear the canvas first so we don't have elements overlapping.
-         // try changing the width and height to canvasWidth and canvasHeight
-         // same effect?
+        // Clear the canvas first so we don't have elements overlapping.
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 
@@ -283,7 +182,7 @@ var Engine = (function(global) {
             }
         }
 
-        // render the score, highscore, and lives
+        // Render the score, highscore, and lives
         ctx.font = "32px Impact";
         ctx.fillStyle = 'black';
         ctx.fillText("Score: " + currentGame.score, 0, 640);
@@ -291,78 +190,32 @@ var Engine = (function(global) {
         ctx.fillText("Lives: " + currentGame.lives, 400, 640);
 
         renderEntities();
-
-        // ScoreKeeper();
     }
 
     /* This function is called by the render function and is called on each game
-     * tick. Its purpose is to then call the render functions you have defined
-     * on your enemy and player entities within app.js
+     * tick. Its purpose is to then call the render functions that are defined
+     * on the enemy and player entities within app.js
      */
+
     function renderEntities() {
         /* Loop through all of the objects within the allEnemies array and call
-         * the render function you have defined.
+         * the render function.
          */
-        // render power ups first, have to do it row by row to avoid
-        // overlapping. Start by sorting them into rows. credit shikeyou
-        // var sorter = {1: [], 2: [], 3: []};
-        // for(var i = 0, len = allItems.length; i < len; i++){
-        //     // console.log(sorter[1]);
-        //     // console.log(allItems[2].row);
 
-        //     // the problem we were having here is that each item has a default 
-        //     // row of 0 that does not change. 0 does not exist in sorter so 
-        //     // when it tries to push the item to sorter[0] we get an error.
-        //     // the line below solves this problem. 
-
-        //     // allItems[i].row = Math.floor(Math.random() * 3) + 1;
-        //     // console.log(allItems[i].row);
-        //     sorter[allItems[i].row].push(allItems[i]);
-        //     // console.log(sorter);
-        // }
-        // // render row by row.
-        // for(i = 1; i <= 3; i++){
-        //     for(var j = 0, len = sorter[i].length; j < len; j++){
-        //         // console.log(sorter[i][j]);
-        //         // console.log(sorter[i].length);
-
-        //         // sorter[i][j] is not an acceptable value to be passed
-        //         // to drawImage in the render function.
-        //         // either we need to add specific x and y coordinates 
-        //         // instead of inheriting them from the superclass
-        //         // OR we need to give the Item superclass its own render
-        //         // function.
-
-        //         // We need to find a way to render each instance of item 
-        //         // subclasses in array allItems in a random location on 
-        //         // rows 1-3. 
-        //         // Maybe we can emulate what we did with enemies, randomly
-        //         // selecting a different row each time the instance exceeds
-        //         // the width of the canvas.
-
-        //         // Check out the resetItems function that is commented out,
-        //         //  that function is meant to reset the position of items.
-        //         // Look at the resetPlayer function, we should recreate this
-        //         // in app.js.
-
-        //         sorter[i][j].render();
-        //     }
-        // }
-
-        //render items
+        // Render items
         allItems.forEach(function(item){
             item.render();
         })
 
-        // render our player next
+        // Render our player next
         player.render();
 
-        // followed by the enemies
+        // Followed by the enemies
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
 
-        // render the texts last
+        // Render the texts last
         allTexts.forEach(function(text){
             text.render();
         });
@@ -374,69 +227,14 @@ var Engine = (function(global) {
         gameOverText.forEach(function(text){
             text.renderGameOver();
         });
-
-        // render game over text
-        // gameover.renderGameOver();
-
-        // gem.render();
     }
 
-    // Our game resets
 
-    /* This function does nothing but it could have been a good place to
-     * handle game reset states - maybe a new game menu or a game over screen
-     * those sorts of things. It's only called once by the init() method.
-     */
-    // function gameOver() {
-        
-    // //     // when game ends, player moves back to its initial position and
-    // //     // the score is put back to zero. If the score of the previous
-    // //     // game is higher than our high score then we change highScore
-
-    //     player.reset();
-
-    //     if(currentGame.score > currentGame.highScore){
-    //         currentGame.highScore = currentGame.score;
-    //     }
-    //     currentGame.score = 0;
-    // }
-
-    // //reset the players position and power ups without resetting the whole game
-    // function resetPlayer(){
-    //     player.reset();
-    // //     resetItems();
-    // }
-    
-    // // reset the position and whether the power up will be visible or not
-    // function resetItems(){
-
-    //     // first shuffle an array from 0 - 14 because there are 15 total squares
-    //     var shuffledList = shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
-
-    //     // next loop through the power ups, grab an item from the shuffledList
-    //     // array and store it in a variable.
-    //     for(var i = 0, len = allItems.length; i < len; i++){
-            
-    //         var n = shuffledList[i];
-
-    //         // this will ensure none of the columns are greater than 4.
-    //         allItems[i].setCol(n % 5);
-
-    //         // this will ensure none of the rows are greater than 3.
-    //         allItems[i].setRow(Math.floor(n / 5) + 1);
-
-    //         // finally, we determine whether the power up will be visible
-    //         // based on its probability
-    //         allItems[i].visability = Math.random() <= allItems[i].probability;
-    //     }
-    // }
-
-    // To conclude, we will load all of our elements resources.
-
-    /* Go ahead and load all of the images we know we're going to need to
-     * draw our game level. Then set init as the callback method, so that when
+    /* Load all of the images we're going to need to draw our game 
+     * level. Then set init as the callback method, so that when
      * all of these images are properly loaded our game will start.
      */
+
     Resources.load([
         'images/stone-block.png',
         'images/water-block.png',
@@ -452,8 +250,8 @@ var Engine = (function(global) {
     Resources.onReady(init);
 
     /* Assign the canvas' context object to the global variable (the window
-     * object when run in a browser) so that developers can use it more easily
-     * from within their app.js files.
+     * object when run in a browser) so that it can be used more easily
+     * from within the app.js file.
      */
     global.ctx = ctx;
 })(this);
