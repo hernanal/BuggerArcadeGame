@@ -369,12 +369,12 @@ Item.prototype.itemBoost = function(){
             if(allItems[i].lives === true && 
                currentGame.lives < 5){
                 currentGame.lives += 1;
-                // PUT DISPLAYTEXT CALL HERE
+                this.displayText(allTexts, 'Extra life!', canvasWidth / 2, this.y, 0.8, 'white');
             }
             else{
                 currentGame.lives = currentGame.lives
                 currentGame.score += allItems[i].points;
-                // PUT DISPLAYTEXT CALL HERE             
+                this.displayText(allTexts, '+' + allItems[i].points, this.x, this.y, 0.8, 'yellow');             
             }
             // allItems[i].randomLocation();
         
@@ -575,6 +575,9 @@ InGameText.prototype.render = function(){
     ctx.font = '30px Impact';
     ctx.fillStyle = this.color;
     ctx.fillText(this.text, this.x + 30, this.y + 120);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.strokeText(this.text, this.x + 30, this.y + 120);
 };
 InGameText.prototype.renderWinner = function(){
     ctx.font = '40px Impact';
