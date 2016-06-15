@@ -676,4 +676,4 @@ document.addEventListener('keyup', function(e) {
 
 // merged master with scores branch 6/13/16
 // merged master with boosters branch 6/14/16
-// merged master with text branch 6/15/16
+// merged master with text branch 6/15/16.
