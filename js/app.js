@@ -36,11 +36,8 @@ GameElement.prototype.setRow = function(row){
 // Method to display text during collisions, when the player wins
 // and when the game is over
 // Credit: shikeyou
-GameElement.prototype.displayText = function(text, col, row, duration, color){
-    allTexts.push(new InGameText(text, col, row, duration, color));
-};
-GameElement.prototype.displayGameOver = function(text, col, row, duration, color){
-    gameOverText.push(new InGameText(text, col, row, duration, color));
+GameElement.prototype.displayText = function(text_array, text, col, row, duration, color){
+    text_array.push(new InGameText(text, col, row, duration, color));
 };
 
 //Enemy speeds and possible y coordinates
@@ -186,7 +183,7 @@ Enemy.prototype.enemyCollisions = function(a_player, item_array){
         currentGame.score -= 20;
         currentGame.lives -= 1;
         if(currentGame.lives > 0){
-            this.displayText(texts[i], a_player.x, a_player.y, .70, 'red');
+            this.displayText(allTexts, texts[i], a_player.x, a_player.y, .70, 'red');
         }
         a_player.reset();
 
@@ -194,7 +191,7 @@ Enemy.prototype.enemyCollisions = function(a_player, item_array){
         if(currentGame.lives <= 0){
             var gameover = ['GAME OVER!', 'YOU LOSE!', 'ARE YOU TRYING?'];
             var i = Math.floor(Math.random() * gameover.length);
-            this.displayGameOver(gameover[i], a_player.x, a_player.y, 1, 'red');
+            this.displayText(gameOverText, gameover[i], a_player.x - 50, a_player.y, 1.5, 'red');
             a_player.reset();
 
             // loop to reset collectable items when game ends
@@ -299,8 +296,9 @@ Player.prototype.update = function(dt){
             // to display a different message each
             // time the player reaches the water
             // alert("Congrats, winner!");
-
-            // PUT DISPLAYTEXT CALL HERE
+            var winner = ['WINNER!', 'YES!', 'GOT IT!', 'NICE!'];
+            var i = Math.floor(Math.random() * winner.length);
+            this.displayText(winnerText, winner[i], canvasWidth / 2, 100, 1, 'green')
             this.reset();
         }
         // if(this.collisonCheck() === true){
@@ -563,18 +561,36 @@ InGameText.prototype.update = function(dt){
     this.y -= this.speed * dt;
     this.x -= 60 * dt;
 };
+InGameText.prototype.updateWinner = function(dt){
+    this.duration -= dt;
+    this.y -= this.speed * dt;
+    this.x += 50 * dt;
+};
+InGameText.prototype.updateGameOver = function(dt){
+    this.duration -= dt;
+    this.y -= this.speed * dt;
+    this.x * dt;
+}
 InGameText.prototype.render = function(){
     ctx.font = '30px Impact';
     ctx.fillStyle = this.color;
     ctx.fillText(this.text, this.x + 30, this.y + 120);
 };
+InGameText.prototype.renderWinner = function(){
+    ctx.font = '40px Impact';
+    ctx.fillStyle = this.color;
+    ctx.fillText(this.text, this.x, this.y + 100);
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 2;
+    ctx.strokeText(this.text, this.x, this.y + 100);
+};
 InGameText.prototype.renderGameOver = function(){
     ctx.font = '50px Impact';
     ctx.fillStyle = this.color;
-    ctx.fillText(this.text, this.x, this.y);
+    ctx.fillText(this.text, this.x - 30, this.y - 120);
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 5;
-    ctx.strokeText(this.text, this.x, this.y);
+    ctx.strokeText(this.text, this.x - 30, this.y - 120);
 };
 
 
@@ -635,6 +651,7 @@ for(var i = 0; i < 1; i++){
 
 // for the storage of in game text
 var allTexts = [];
+var winnerText = [];
 var gameOverText = [];
 
 // Game over text instantiation
