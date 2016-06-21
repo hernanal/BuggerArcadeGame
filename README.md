@@ -45,4 +45,6 @@ I hope you enjoy the game and feel free to message me any suggestions you have o
 
 Let me know your high score as well!
 
+Check out the game [here](https://hernanal.github.io/BuggerArcadeGame)!!
+
 
